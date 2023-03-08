@@ -20,7 +20,7 @@ public class KonuController {
 
     @GetMapping(path = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Konu>> getAll() {
-        // localhost:9090/FirstSpringWeb/konu/getAll
+        // localhost:9090/konu/getAll
         List<Konu> res = repo.getAll();
         if (res == null || res.size() == 0) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -31,7 +31,7 @@ public class KonuController {
 
     @GetMapping(path = "getByIdHeader", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Konu> getByIdHeader(@RequestHeader(name = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/konu/getById?id=1
+        // localhost:9090/konu/getById?id=1
         Konu res = repo.getById(id);
         if (res != null) {
             return ResponseEntity.ok(res);
@@ -42,7 +42,7 @@ public class KonuController {
 
     @GetMapping(path = "getById", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Konu> getByIdQueryParam(@RequestParam(value = "id", required = true) Integer id) {
-        // localhost:9090/FirstSpringWeb/konu/getById?id=1
+        // localhost:9090/konu/getById?id=1
         Konu res = repo.getById(id);
         if (res != null) {
             return ResponseEntity.ok(res);
@@ -53,7 +53,7 @@ public class KonuController {
 
     @GetMapping(path = "getById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Konu> getByIdPathParam(@PathVariable(value = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/konu/getById/1
+        // localhost:9090/konu/getById/1
         Konu res = repo.getById(id);
         if (res != null) {
             return ResponseEntity.ok(res);
@@ -64,7 +64,7 @@ public class KonuController {
 
     @PostMapping(path = "save", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> save(@RequestBody Konu konu) {
-        // localhost:9090/FirstSpringWeb/konu/save
+        // localhost:9090/konu/save
         if (repo.save(konu)) {
             return ResponseEntity.status(HttpStatus.CREATED).body("Başarı ile kaydedildi");
         } else {
@@ -74,7 +74,7 @@ public class KonuController {
 
     @DeleteMapping(path = "deleteById/{id}")
     public ResponseEntity<String> deleteById(@PathVariable(value = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/konu/deleteById/1
+        // localhost:9090/konu/deleteById/1
         if (repo.deleteById(id)) {
             return ResponseEntity.ok("Başarı ile silindi");
         } else {
@@ -84,7 +84,7 @@ public class KonuController {
 
     @DeleteMapping(path = "deleteByIdHeader")
     public ResponseEntity<String> deleteByIdHeader(@RequestHeader(value = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/konu/deleteById/1
+        // localhost:9090/konu/deleteById/1
         if (repo.deleteById(id)) {
             return ResponseEntity.ok("Başarı ile silindi");
         } else {

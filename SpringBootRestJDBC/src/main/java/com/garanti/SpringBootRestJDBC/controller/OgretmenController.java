@@ -23,7 +23,7 @@ import java.util.Locale;
 @io.swagger.v3.oas.annotations.tags.Tag(description = "Oğretmen endpointleri", name = "ogretmen")
 public class OgretmenController
 {
-    // localhost:9090/FirstSpringWeb/ogretmen
+    // localhost:9090/ogretmen
 
     private MessageSource messageSource;
 
@@ -55,7 +55,7 @@ public class OgretmenController
     public String helloSpring()
     {
         // new OgretmenRepo().helloSpring();
-        // localhost:9090/FirstSpringWeb/ogretmen/hello
+        // localhost:9090/ogretmen/hello
         return "Hello Spring";
     }*/
 
@@ -86,13 +86,13 @@ public class OgretmenController
 
     @GetMapping(path = "findAllByName", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Ogretmen>> getByIdQueryParam(@RequestParam(value = "name", required = true) String name) {
-        // localhost:9090/FirstSpringWeb/ogretmen/findAllByName?name=a
+        // localhost:9090/ogretmen/findAllByName?name=a
         return ResponseEntity.ok(this.service.getAllLike(name));
     }
 
     @GetMapping(path = "getByIdHeader", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ogretmen> getByIdHeader(@RequestHeader(name = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/ogretmen/getById?id=1
+        // localhost:9090/ogretmen/getById?id=1
         Ogretmen res = service.getById(id);
         if (res != null) {
             return ResponseEntity.ok(res);
@@ -103,7 +103,7 @@ public class OgretmenController
 
     @GetMapping(path = "getById", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ogretmen> getByIdQueryParam(@RequestParam(value = "id", required = true) Integer id) {
-        // localhost:9090/FirstSpringWeb/ogretmen/getById?id=1
+        // localhost:9090/ogretmen/getById?id=1
         Ogretmen res = service.getById(id);
         if (res != null) {
             return ResponseEntity.ok(res);
@@ -114,16 +114,12 @@ public class OgretmenController
 
     @GetMapping(path = "getById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(description = "Bulunursa 200 bulunamazsa 204", summary = "ID ile getir")
-    public ResponseEntity<Ogretmen> getByIdPathParam(@PathVariable(value = "id") Integer id)
-    {
+    public ResponseEntity<Ogretmen> getByIdPathParam(@PathVariable(value = "id") Integer id) {
         // localhost:9090/ogretmen/getById/1
         Ogretmen res = service.getById(id);
-        if (res != null)
-        {
+        if (res != null) {
             return ResponseEntity.ok(res);
-        }
-        else
-        {
+        } else {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
     }
@@ -149,7 +145,7 @@ public class OgretmenController
     @DeleteMapping(path = "deleteById/{id}")
     @Hidden
     public ResponseEntity<String> deleteById(@PathVariable(value = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/ogretmen/deleteById/1
+        // localhost:9090/ogretmen/deleteById/1
         if (service.deleteById(id)) {
             return ResponseEntity.ok("Başarı ile silindi");
         } else {
@@ -159,7 +155,7 @@ public class OgretmenController
 
     @DeleteMapping(path = "deleteByIdHeader")
     public ResponseEntity<String> deleteByIdHeader(@RequestHeader(value = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/ogretmen/deleteById/1
+        // localhost:9090/ogretmen/deleteById/1
         if (service.deleteById(id)) {
             return ResponseEntity.ok("Başarı ile silindi");
         } else {

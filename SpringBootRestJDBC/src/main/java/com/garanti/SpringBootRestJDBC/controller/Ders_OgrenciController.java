@@ -20,7 +20,7 @@ public class Ders_OgrenciController {
 
     @GetMapping(path = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Ders_Ogrenci>> getAll() {
-        // localhost:9090/FirstSpringWeb/ders_ogrenci/getAll
+        // localhost:9090/ders_ogrenci/getAll
         List<Ders_Ogrenci> res = repo.getAll();
         if (res == null || res.size() == 0) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -31,7 +31,7 @@ public class Ders_OgrenciController {
 
     @GetMapping(path = "getByIdHeader", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ders_Ogrenci> getByIdHeader(@RequestHeader(name = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/ders_ogrenci/getById?id=1
+        // localhost:9090/ders_ogrenci/getById?id=1
         Ders_Ogrenci res = repo.getById(id);
         if (res != null) {
             return ResponseEntity.ok(res);
@@ -42,7 +42,7 @@ public class Ders_OgrenciController {
 
     @GetMapping(path = "getById", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ders_Ogrenci> getByIdQueryParam(@RequestParam(value = "id", required = true) Integer id) {
-        // localhost:9090/FirstSpringWeb/ders_ogrenci/getById?id=1
+        // localhost:9090/ders_ogrenci/getById?id=1
         Ders_Ogrenci res = repo.getById(id);
         if (res != null) {
             return ResponseEntity.ok(res);
@@ -53,7 +53,7 @@ public class Ders_OgrenciController {
 
     @GetMapping(path = "getById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ders_Ogrenci> getByIdPathParam(@PathVariable(value = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/ders_ogrenci/getById/1
+        // localhost:9090/ders_ogrenci/getById/1
         Ders_Ogrenci res = repo.getById(id);
         if (res != null) {
             return ResponseEntity.ok(res);
@@ -64,7 +64,7 @@ public class Ders_OgrenciController {
 
     @PostMapping(path = "save", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> save(@RequestBody Ders_Ogrenci ders_ogrenci) {
-        // localhost:9090/FirstSpringWeb/ders_ogrenci/save
+        // localhost:9090/ders_ogrenci/save
         if (repo.save(ders_ogrenci)) {
             return ResponseEntity.status(HttpStatus.CREATED).body("Başarı ile kaydedildi");
         } else {
@@ -74,7 +74,7 @@ public class Ders_OgrenciController {
 
     @DeleteMapping(path = "deleteById/{id}")
     public ResponseEntity<String> deleteById(@PathVariable(value = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/ders_ogrenci/deleteById/1
+        // localhost:9090/ders_ogrenci/deleteById/1
         if (repo.deleteById(id)) {
             return ResponseEntity.ok("Başarı ile silindi");
         } else {
@@ -84,7 +84,7 @@ public class Ders_OgrenciController {
 
     @DeleteMapping(path = "deleteByIdHeader")
     public ResponseEntity<String> deleteByIdHeader(@RequestHeader(value = "id") Integer id) {
-        // localhost:9090/FirstSpringWeb/ders_ogrenci/deleteById/1
+        // localhost:9090/ders_ogrenci/deleteById/1
         if (repo.deleteById(id)) {
             return ResponseEntity.ok("Başarı ile silindi");
         } else {
